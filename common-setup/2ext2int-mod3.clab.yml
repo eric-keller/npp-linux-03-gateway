@@ -1,0 +1,67 @@
+name: mod3-2ext2int 
+
+
+topology:
+  nodes:
+    ext1:
+      kind: linux
+      image: ekellercu/network-testing:v0.1
+      binds: 
+        - mod3-ext1:/lab-folder
+      exec:
+        - ip addr add 100.100.100.1/24 dev eth1 
+        - ip route change default via 111.111.0.1 dev eth1 onlink
+    ext2:
+      kind: linux
+      image: ekellercu/network-testing:v0.1
+      binds: 
+        - mod3-ext2:/lab-folder
+      exec:
+        - ip addr add 101.101.101.1/24 dev eth1
+        - ip route change default via 111.111.0.1 dev eth1 onlink
+    int1:
+      kind: linux
+      image: ekellercu/network-testing:v0.1
+      binds:
+        - mod3-int1:/lab-folder
+      exec:
+        - ip addr add 10.10.0.2/24 dev eth1
+        - ip route change default via 10.10.0.1 dev eth1
+          
+    int2:
+      kind: linux
+      image: ekellercu/network-testing:v0.1
+      binds: 
+        - mod3-int2:/lab-folder
+      exec:
+        - ip addr add 10.10.0.3/24 dev eth1
+        - ip route change default via 10.10.0.1 dev eth1
+
+    gw:
+      kind: linux
+      image: ekellercu/network-testing:v0.1
+      binds:
+        - mod3-gw:/lab-folder
+      exec:
+        - ip addr add 111.111.0.1/24 dev eth1 
+        - ip route add 100.100.100.0/24 dev eth1
+        - ip route add 101.101.101.0/24 dev eth1
+        - ip addr add 10.10.0.1/24 dev eth2
+    br-int:
+      kind: bridge
+    br-ext:
+      kind: bridge
+
+
+  links:
+    - endpoints: ["ext1:eth1", "br-ext:eth1"]
+    - endpoints: ["ext2:eth1", "br-ext:eth2"]
+    - endpoints: ["gw:eth1", "br-ext:eth3"]
+
+    - endpoints: ["int1:eth1", "br-int:eth4"]
+    - endpoints: ["int2:eth1", "br-int:eth5"]
+    - endpoints: ["gw:eth2", "br-int:eth6"]
+
+
+
+
