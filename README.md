@@ -1,6 +1,6 @@
 # Introduction
 
-This set of demos and lab goes along with the coursera course: `Network Principles in Practice: Linux`.  You are welcome to run this code and I try to make it as self explanatory as possible, but some of the explanation will be in the videos for the course.
+This set of demos and lab goes along with the coursera course: `Network Principles in Practice: Linux Networking`.  You are welcome to run this code and I try to make it as self explanatory as possible, but some of the explanation will be in the videos for the course.
 
 # Vagrantfile
 
