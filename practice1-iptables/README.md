@@ -20,8 +20,8 @@ alias gw="docker exec -it  clab-mod3-2ext2int-gw"
 So, when a command is shown like gw iptables, that is executing the command iptables inside of the gw container
 
 
-It can be helpful to refer to this picture, to understand what table / chain to use:
-![Netfilter Packet Flow](https://en.wikipedia.org/wiki/Netfilter#/media/File:Netfilter-packet-flow.svg)
+It can be helpful to refer to this picture, to understand what table / chain to use (from https://en.wikipedia.org/wiki/Netfilter):
+![Netfilter Packet Flow](https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Netfilter-packet-flow.svg/1920px-Netfilter-packet-flow.svg.png)
 
 
 # Part 1 - Simple filtering on a source IP
